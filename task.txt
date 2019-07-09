@@ -1,0 +1,10 @@
+To make a python script which will output for each frame the number of cirlces, triangles and rectangles in the picture.
+You will probably need 
+color space transform "cv2.cvtcolor", 
+threshold "cv2.threshold", 
+morphology:
+https://docs.opencv.org/3.0-beta/doc/py_tutorials/py_imgproc/py_morphological_ops/py_morphological_ops.html
+Histogram equalization
+https://docs.opencv.org/3.1.0/d5/daf/tutorial_py_histogram_equalization.html
+Contours and their analysis:
+https://docs.opencv.org/3.1.0/d3/d05/tutorial_py_table_of_contents_contours.html
