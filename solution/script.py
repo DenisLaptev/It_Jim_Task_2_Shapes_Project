@@ -6,7 +6,7 @@ def nothing(x):
     pass
 
 
-def generate_threshold(color, l_h, l_s, l_v, u_h, u_s, u_v, min_area, arc_factor):
+def generate_contours(color, l_h, l_s, l_v, u_h, u_s, u_v, min_area, arc_factor):
     lower_red = np.array([l_h, l_s, l_v])
     upper_red = np.array([u_h, u_s, u_v])
 
@@ -31,11 +31,11 @@ while True:
     _, frame = cap.read()
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    black_contours = generate_threshold("black", 0, 0, 40, 180, 98, 247, 200, 0.03)
-    blue_contours = generate_threshold("blue", 106, 12, 127, 127, 76, 202, 200, 0.03)
-    green_contours = generate_threshold("green", 35, 37, 107, 77, 255, 255, 200, 0.03)
-    pink_contours = generate_threshold("pink", 134, 35, 60, 180, 255, 255, 200, 0.03)
-    yellow_contours = generate_threshold("yellow", 0, 46, 193, 34, 255, 255, 200, 0.03)
+    black_contours = generate_contours("black", 0, 0, 40, 180, 98, 247, 200, 0.03)
+    blue_contours = generate_contours("blue", 106, 12, 127, 127, 76, 202, 200, 0.03)
+    green_contours = generate_contours("green", 35, 37, 107, 77, 255, 255, 200, 0.03)
+    pink_contours = generate_contours("pink", 134, 35, 60, 180, 255, 255, 200, 0.03)
+    yellow_contours = generate_contours("yellow", 0, 46, 193, 34, 255, 255, 200, 0.03)
 
     font = cv2.FONT_HERSHEY_COMPLEX
 
