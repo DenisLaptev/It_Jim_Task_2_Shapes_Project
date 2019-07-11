@@ -6,6 +6,7 @@ font = cv2.FONT_HERSHEY_COMPLEX
 path_to_video = '../resources/output.avi'
 cap = cv2.VideoCapture(path_to_video)
 
+outputfile = 'cvs_file.txt'
 
 def nothing(x):
     pass
@@ -59,10 +60,31 @@ def generate_threshold(color, l_h, l_s, l_v, u_h, u_s, u_v):
     return contours
 
 
+def write_text_to_file(filename, text):
+    """Функция для записи в	файл filename строки text"""
+
+    # Открытие файла для записи
+    f = open(filename, "a")
+    # Запись строки text в файл
+    f.write(text)
+    # Закрытие файла
+    f.close()
+
+def refresh_file(filename):
+
+    # Открытие файла для записи
+    f = open(filename, "w")
+    # Закрытие файла
+    f.close()
+
+refresh_file(outputfile)
+
 while True:
     triangle_count = 0
     rectangle_count = 0
     circle_count = 0
+
+    list_for_csv_outputfile = []
 
     _, frame = cap.read()
 
@@ -110,6 +132,10 @@ while True:
     triangle_text = 'Triangles: ' + str(triangle_count)
     rectangle_text = 'Rectangles: ' + str(rectangle_count)
     circles_text = 'Circles: ' + str(circle_count)
+
+    output_str = str(triangle_count) + '    ' + str(rectangle_count) + '    ' + str(circle_count) + '\n'
+    list_for_csv_outputfile.append(output_str)
+    write_text_to_file(outputfile, output_str)
 
     # print info (cont of polygons) at the frame
     cv2.putText(frame, triangle_text, (100, 100), font, 0.6, (0))
